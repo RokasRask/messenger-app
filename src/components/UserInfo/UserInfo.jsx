@@ -1,4 +1,5 @@
 import React from 'react';
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import './UserInfo.scss';
 
 const UserInfo = ({ user }) => {
@@ -28,6 +29,7 @@ const UserInfo = ({ user }) => {
         <button className="user-info__action-btn">
           <span className="icon">ℹ️</span>
         </button>
+        <ThemeToggler />
       </div>
     </div>
   );

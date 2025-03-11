@@ -121,7 +121,7 @@
   &__actions {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    gap: $spacing-sm;
   }
   
   &__action-btn {
@@ -132,7 +132,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: $spacing-sm;
     background-color: var(--gray-100);
     color: var(--light-text-color);
     font-size: 16px;

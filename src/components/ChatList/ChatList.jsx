@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ChatContext } from '../../context/ChatContext';
 import { formatChatListDate } from '../../utils/dateFormat';
-import ThemeToggler from '../ThemeToggler/ThemeToggler';
+import logo from '../../assets/images/logo.svg';
 import './ChatList.scss';
 
 const ChatList = () => {
@@ -15,8 +15,14 @@ const ChatList = () => {
   return (
     <div className="chat-list">
       <div className="chat-list__header">
-        <h1>Pokalbiai</h1>
-        <ThemeToggler />
+        <div className="app-logo">
+          <img src={logo} alt="MessageMe!" className="app-logo__image" />
+          <h1 className="app-title">
+            <span className="app-title__first">Message</span>
+            <span className="app-title__second">Me</span>
+            <span className="app-title__accent">!</span>
+          </h1>
+        </div>
       </div>
       <div className="chat-list__search">
         <input type="text" placeholder="Ieškoti..." />

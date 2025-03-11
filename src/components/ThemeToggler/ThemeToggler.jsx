@@ -19,7 +19,6 @@ const ThemeToggler = () => {
         aria-label="Keisti temą"
       >
         <span className="theme-toggler__icon">🎨</span>
-        <span className="theme-toggler__text">Tema</span>
       </button>
       
       {isOpen && (

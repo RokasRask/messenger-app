@@ -9,7 +9,7 @@
   background: var(--gray-100);
   position: relative;
   overflow: hidden;
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -17,9 +17,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-      radial-gradient(circle at top right, rgba(var(--primary-light), 0.1), transparent 400px),
-      radial-gradient(circle at bottom left, rgba(var(--blue-accent), 0.07), transparent 300px);
+    background:
+      radial-gradient(circle at top right, rgba(0, 0, 0, 0.03), transparent 400px),
+      radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.02), transparent 300px);
     pointer-events: none;
   }
 
@@ -34,31 +34,8 @@
     z-index: 5;
     @include animate(colorPulse, 15s, 0s, infinite, alternate);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    
-    h1 {
-      margin: 0;
-      font-size: 1.8rem;
-      letter-spacing: 0.5px;
-      font-weight: 600;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      position: relative;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 40px;
-        height: 3px;
-        background: white;
-        border-radius: 3px;
-        @include animate(shine, 3s, 0s, infinite);
-        background: linear-gradient(to right, transparent, white, transparent);
-        background-size: 200% 100%;
-      }
-    }
   }
 
   &__search {
@@ -68,7 +45,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     z-index: 4;
     transition: all 0.3s ease;
-    
+
     input {
       @include input-style;
       background: var(--gray-100);
@@ -78,23 +55,23 @@
       border: 2px solid transparent;
       transition: all 0.3s ease;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      
+
       &::placeholder {
         color: var(--light-text-color);
         transition: opacity 0.3s;
       }
-      
+
       &:focus {
         border-color: var(--primary-light);
         background: white;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        
+
         &::placeholder {
           opacity: 0.5;
         }
       }
     }
-    
+
     &::before {
       content: "🔍";
       position: absolute;
@@ -131,23 +108,23 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     @include animate(fadeIn, 0.5s);
     @include stagger-animation(20, 0.05s, slideInRight);
-    
+
     &:hover {
       background: white;
-      box-shadow: 0 3px 12px rgba(var(--primary-color), 0.08);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       transform: translateY(-2px) scale(1.01);
     }
-    
+
     &.active {
       border-left-color: var(--primary-color);
       background: white;
-      box-shadow: 0 5px 15px rgba(var(--primary-color), 0.15);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
       @include animate(select, 2s, 0s, infinite);
-      
+
       .chat-list__name-time h3 {
         color: var(--primary-color);
       }
-      
+
       &::before {
         content: '';
         position: absolute;
@@ -166,7 +143,7 @@
   &__avatar {
     position: relative;
     margin-right: $spacing-md;
-    
+
     img {
       width: 50px;
       height: 50px;
@@ -175,23 +152,23 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid white;
       transition: all 0.3s ease;
-      
+
       .active & {
         border-color: var(--primary-light);
         transform: scale(1.05);
       }
     }
-    
+
     .status-indicator {
       @include status-dot(10px);
       bottom: 2px;
       right: 2px;
       z-index: 2;
-      
+
       &.online {
         @include animate(pulse, 3s, 0s, infinite);
       }
-      
+
       &.away {
         @include animate(pulse, 4s, 0s, infinite);
       }
@@ -200,7 +177,7 @@
 
   &__content {
     flex: 1;
-    min-width: 0;  // Needed for text ellipsis
+    min-width: 0; // Needed for text ellipsis
   }
 
   &__name-time {
@@ -208,7 +185,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: $spacing-xs;
-    
+
     h3 {
       margin: 0;
       font-size: $font-size-medium;
@@ -218,7 +195,7 @@
       max-width: 150px;
       transition: color 0.3s ease;
     }
-    
+
     .chat-list__time {
       font-size: $font-size-small;
       color: var(--light-text-color);
@@ -239,7 +216,7 @@
     @include text-truncate;
     max-width: 170px;
     transition: all 0.3s ease;
-    
+
     .active & {
       color: var(--text-color);
     }
@@ -259,9 +236,72 @@
     padding: 0 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     @include animate(fadeIn, 0.3s);
-    
+
     &:not(:empty) {
       @include animate(pulse, 2s, 0s, infinite);
+    }
+  }
+}
+
+// App logotipo ir pavadinimo stilius
+.app-logo {
+  display: flex;
+  align-items: center;
+
+  &__image {
+    width: 38px;
+    height: 38px;
+    margin-right: 12px;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+    @include animate(float, 6s, 0s, infinite, alternate);
+  }
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
+
+  &__first {
+    font-weight: 800;
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    letter-spacing: 0;
+  }
+
+  &__second {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    margin-left: -2px;
+  }
+
+  &__accent {
+    font-weight: 900;
+    color: white;
+    position: relative;
+    display: inline-block;
+    transform: scale(1.2);
+    margin-left: 2px;
+
+    @include animate(pulse, 2s, 0s, infinite, alternate);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: white;
+      opacity: 0.8;
+      @include animate(fadeIn, 1s, 0s, infinite, alternate);
     }
   }
 }
