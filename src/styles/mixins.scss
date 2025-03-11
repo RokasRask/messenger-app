@@ -1,0 +1,137 @@
+@import 'variables';
+
+// Flexbox išdėstymas
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+// Centravimas
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Teksto apkarpymas su daugtaškiu
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Mygtuko stilius
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// Atsako dizainas
+@mixin responsive($breakpoint) {
+  @if $breakpoint == small {
+    @media only screen and (max-width: 576px) { @content; }
+  }
+  @else if $breakpoint == medium {
+    @media only screen and (max-width: 768px) { @content; }
+  }
+  @else if $breakpoint == large {
+    @media only screen and (max-width: 992px) { @content; }
+  }
+  @else if $breakpoint == extra-large {
+    @media only screen and (max-width: 1200px) { @content; }
+  }
+}
+
+// Šešėlio efektai
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: $box-shadow;
+  }
+  @else if $level == 2 {
+    box-shadow: $box-shadow-hover;
+  }
+  @else if $level == 3 {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+
+// Perėjimo efektai
+@mixin transition($properties...) {
+  transition-property: $properties;
+  transition-duration: $transition-speed;
+  transition-timing-function: ease;
+}
+
+// Būsenos indikatorius
+@mixin status-dot($size: 10px) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #fff;
+  
+  &.online {
+    background-color: $online-color;
+  }
+  
+  &.offline {
+    background-color: $offline-color;
+  }
+  
+  &.away {
+    background-color: $away-color;
+  }
+}
+
+// Įvesties laukas
+@mixin input-style {
+  width: 100%;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-md;
+  font-size: $font-size-regular;
+  color: $text-color;
+  outline: none;
+  
+  &:focus {
+    border-color: $primary-color;
+  }
+  
+  &::placeholder {
+    color: $light-text-color;
+  }
+}
+
+// Slenkantis sąrašas
+@mixin scrollable {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: lighten($light-text-color, 20%);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $light-text-color;
+  }
+}

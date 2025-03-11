@@ -1,0 +1,45 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.main-layout {
+  @include flex(row, flex-start, stretch, 0);
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  
+  .sidebar {
+    width: $sidebar-width;
+    border-right: 1px solid $border-color;
+    background-color: $background-color;
+    height: 100%;
+  }
+  
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: $secondary-color;
+  }
+  
+  @include responsive(medium) {
+    .sidebar {
+      width: 280px;
+    }
+  }
+  
+  @include responsive(small) {
+    flex-direction: column;
+    
+    .sidebar {
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid $border-color;
+    }
+    
+    .content {
+      height: 0;
+      flex: 1;
+    }
+  }
+}
