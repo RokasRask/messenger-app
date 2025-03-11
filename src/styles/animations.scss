@@ -1,0 +1,189 @@
+// Animacijų apibrėžimai
+
+// Pulsavimo efektas
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  // Spalvų perėjimo animacija
+  @keyframes colorPulse {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  // Įėjimo animacija iš apačios
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Įėjimo animacija iš dešinės
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  // Įėjimo animacija iš kairės
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  // Rašymo indikatoriaus animacija
+  @keyframes typing {
+    0% {
+      opacity: 0.4;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 0.4;
+      transform: translateY(0);
+    }
+  }
+  
+  // Šviesos blyksnio animacija
+  @keyframes shine {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  // Švelnus atsiradimo efektas
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  // Animuoti burbulai
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  
+  // Švelnus drebėjimas
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-1px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(1px);
+    }
+  }
+  
+  // Ratu judanti animacija
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  // Pasirinkimo indikatorius
+  @keyframes select {
+    0% {
+      box-shadow: 0 0 0 0 rgba(79, 154, 255, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(79, 154, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(79, 154, 255, 0);
+    }
+  }
+  
+  // Žinučių būsenos pasikeitimas
+  @keyframes statusChange {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  // Mixin'ai lengvam animacijų taikymui
+  @mixin animate($animation, $duration: 0.3s, $delay: 0s, $count: 1, $direction: normal, $fill-mode: forwards) {
+    animation-name: $animation;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-iteration-count: $count;
+    animation-direction: $direction;
+    animation-fill-mode: $fill-mode;
+  }
+  
+  // Animuotoms žinutėms
+  @mixin stagger-animation($items: 10, $initial-delay: 0.1s, $animation: fadeIn, $duration: 0.3s) {
+    @for $i from 1 through $items {
+      &:nth-child(#{$i}) {
+        animation-delay: $initial-delay + ($i * 0.05s);
+      }
+    }
+    animation-name: $animation;
+    animation-duration: $duration;
+    animation-fill-mode: both;
+  }

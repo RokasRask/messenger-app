@@ -1,13 +1,27 @@
-// Spalvos
-$primary-color: #2979ff;
-$secondary-color: #f5f5f5;
-$text-color: #333;
-$light-text-color: #999;
-$border-color: #e0e0e0;
-$background-color: #fff;
-$error-color: #ff3d00;
-$success-color: #4caf50;
-$warning-color: #ff9800;
+// Spalvų paletė - melsvų atspalvių
+$primary-color: #0a6cff; // Pagrindinė ryški mėlyna
+$primary-light: #4f9aff; // Šviesesnė pagrindinė
+$primary-dark: #0049cc; // Tamsesnė pagrindinė
+$primary-gradient: linear-gradient(45deg, $primary-dark, $primary-color, $primary-light);
+
+$secondary-color: #eef5ff; // Labai šviesi mėlyna fono spalva
+$secondary-accent: #c0dbff; // Šviesiai mėlynas akcentas 
+$secondary-dark: #d2e3fc; // Tamsesnis antrinis
+
+$text-color: #1a2b47; // Tamsiai mėlyna tekstui
+$light-text-color: #6b89b0; // Šviesesnė teksto spalva
+$border-color: #d9e6ff; // Šviesiai mėlynas rėmelis
+$background-color: #ffffff; // Baltas fonas
+$error-color: #ff3d7b; // Rožinė klaidos spalva
+$success-color: #00d5b8; // Žydra sėkmės spalva
+$warning-color: #ffac42; // Oranžinė perspėjimo spalva
+
+// Papildoma spalvų paletė
+$gray-100: #f7faff; // Labai šviesi melsva
+$gray-200: #edf2fa;
+$gray-300: #dde7f5;
+$gray-400: #c1d3eb;
+$blue-accent: #5fb3ff; // Papildoma mėlyna akcentams
 
 // Statusų spalvos
 $online-color: #4caf50;

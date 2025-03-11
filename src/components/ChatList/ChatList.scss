@@ -1,0 +1,264 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: $gray-100;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at top right, rgba($primary-light, 0.1), transparent 400px),
+      radial-gradient(circle at bottom left, rgba($blue-accent, 0.07), transparent 300px);
+    pointer-events: none;
+  }
+
+  &__header {
+    padding: $spacing-md $spacing-lg;
+    background-color: $primary-color;
+    background-image: $primary-gradient;
+    background-size: 200% 200%;
+    color: white;
+    @include shadow(2);
+    position: relative;
+    z-index: 5;
+    @include animate(colorPulse, 15s, 0s, infinite, alternate);
+    
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba($primary-dark, 0.3);
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: white;
+        border-radius: 3px;
+        @include animate(shine, 3s, 0s, infinite);
+        background: linear-gradient(to right, transparent, white, transparent);
+        background-size: 200% 100%;
+      }
+    }
+  }
+
+  &__search {
+    padding: $spacing-md;
+    background: $background-color;
+    position: relative;
+    box-shadow: 0 2px 10px rgba($primary-dark, 0.05);
+    z-index: 4;
+    transition: all 0.3s ease;
+    
+    input {
+      @include input-style;
+      background: $gray-100;
+      height: 45px;
+      padding-left: 40px;
+      border-radius: 25px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(#000, 0.05);
+      
+      &::placeholder {
+        color: $light-text-color;
+        transition: opacity 0.3s;
+      }
+      
+      &:focus {
+        border-color: $primary-light;
+        background: white;
+        box-shadow: 0 5px 15px rgba($primary-color, 0.15);
+        
+        &::placeholder {
+          opacity: 0.5;
+        }
+      }
+    }
+    
+    &::before {
+      content: "🔍";
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: $light-text-color;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &__items {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: $spacing-sm 0;
+    @include scrollable;
+    position: relative;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: $spacing-md $spacing-lg;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-left: 3px solid transparent;
+    margin: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-md;
+    background: rgba(white, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 1px 3px rgba(#000, 0.02);
+    @include animate(fadeIn, 0.5s);
+    @include stagger-animation(20, 0.05s, slideInRight);
+    
+    &:hover {
+      background: white;
+      box-shadow: 0 3px 12px rgba($primary-color, 0.08);
+      transform: translateY(-2px) scale(1.01);
+    }
+    
+    &.active {
+      border-left-color: $primary-color;
+      background: white;
+      box-shadow: 0 5px 15px rgba($primary-color, 0.15);
+      @include animate(select, 2s, 0s, infinite);
+      
+      .chat-list__name-time h3 {
+        color: $primary-color;
+      }
+      
+      &::before {
+        content: '';
+        position: absolute;
+        right: $spacing-md;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: $primary-color;
+        @include animate(pulse, 2s, 0s, infinite);
+      }
+    }
+  }
+
+  &__avatar {
+    position: relative;
+    margin-right: $spacing-md;
+    
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 10px rgba(#000, 0.1);
+      border: 2px solid white;
+      transition: all 0.3s ease;
+      
+      .active & {
+        border-color: $primary-light;
+        transform: scale(1.05);
+      }
+    }
+    
+    .status-indicator {
+      @include status-dot(10px);
+      bottom: 2px;
+      right: 2px;
+      z-index: 2;
+      
+      &.online {
+        @include animate(pulse, 3s, 0s, infinite);
+      }
+      
+      &.away {
+        @include animate(pulse, 4s, 0s, infinite);
+      }
+    }
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;  // Needed for text ellipsis
+  }
+
+  &__name-time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xs;
+    
+    h3 {
+      margin: 0;
+      font-size: $font-size-medium;
+      font-weight: 600;
+      color: $text-color;
+      @include text-truncate;
+      max-width: 150px;
+      transition: color 0.3s ease;
+    }
+    
+    .chat-list__time {
+      font-size: $font-size-small;
+      color: $light-text-color;
+      white-space: nowrap;
+    }
+  }
+
+  &__message-unread {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__message-preview {
+    margin: 0;
+    font-size: $font-size-small;
+    color: $light-text-color;
+    @include text-truncate;
+    max-width: 170px;
+    transition: all 0.3s ease;
+    
+    .active & {
+      color: $text-color;
+    }
+  }
+
+  &__unread-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background: $primary-light;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 0 6px;
+    box-shadow: 0 2px 5px rgba($primary-color, 0.3);
+    @include animate(fadeIn, 0.3s);
+    
+    &:not(:empty) {
+      @include animate(pulse, 2s, 0s, infinite);
+    }
+  }
+}
