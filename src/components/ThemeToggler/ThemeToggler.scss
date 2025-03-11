@@ -10,14 +10,14 @@
     display: flex;
     align-items: center;
     padding: $spacing-sm $spacing-md;
-    background-color: rgba(white, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border-radius: 20px;
     font-size: $font-size-small;
     @include transition(background-color, transform, box-shadow);
     
     &:hover {
-      background-color: rgba(white, 0.3);
+      background-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
@@ -73,12 +73,12 @@
   @include transition(background-color, transform);
   
   &:hover {
-    background-color: $gray-100;
+    background-color: rgba(0, 0, 0, 0.05);
     transform: translateY(-2px);
   }
   
   &.active {
-    background-color: $gray-200;
+    background-color: rgba(0, 0, 0, 0.1);
     font-weight: 600;
     position: relative;
     
@@ -100,12 +100,12 @@
   
   &__name {
     font-size: $font-size-small;
-    color: $text-color;
+    color: var(--text-color);
   }
   
   // Tema - Mėlyna
   &--blue &__color {
-    background: linear-gradient(135deg, $primary-color, $primary-light);
+    background: linear-gradient(135deg, #0a6cff, #4f9aff);
   }
   
   // Tema - Raudona

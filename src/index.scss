@@ -12,6 +12,137 @@
 
 body {
   font-family: $primary-font;
+  color: var(--text-color);
+  background-color: var(--gray-100);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+// Pridėkime stilizuotą scrollbar'ą visai aplikacijai
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Stilizuotas teksto pažymėjimas
+::selection {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
+}
+
+// Stilizuotas page load transition
+body {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+// Papildomos stiliaus taisyklės
+button, input, textarea {
+  font-family: $primary-font;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+  
+  &:hover {
+    color: var(--primary-dark);
+  }
+}
+
+// Gražus šrifto rendering
+body {
+  text-rendering: optimizeLegibility;
+}
+
+// Adaptyvumas įrenginiams
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+// Tema: Dark - specialūs pataisymai
+[data-theme='dark'] {
+  body {
+    background-color: #121212;
+  }
+  
+  // Inversinis šviesos režimas
+  .chat-list::before,
+  .chat-window::before,
+  .chat-window__messages::before,
+  .chat-window__messages::after {
+    opacity: 0.05; // Sumažiname foninių elementų ryškumą tamsioje temoje
+  }
+  
+  // Sutamsintos formos
+  input, 
+  textarea, 
+  .message-input__field {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--text-color) !important;
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+  
+  // Tamsios temos žinutės
+  .message:not(.message--own) .message__content {
+    background-color: rgba(255, 255, 255, 0.1);
+    
+    &::before {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  // Patamsinti sąrašo elementai
+  .chat-list__item {
+    background: rgba(255, 255, 255, 0.05);
+    
+    &.active,
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  // Patamsintas viršutinis meniu
+  .user-info {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+}// Importuojame temų kintamuosius ir kitus stiliaus failus
+@import './styles/theme-variables';
+@import './styles/variables';
+@import './styles/mixins';
+@import './styles/animations';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $primary-font;
   color: $text-color;
   background-color: $gray-100;
   line-height: 1.5;

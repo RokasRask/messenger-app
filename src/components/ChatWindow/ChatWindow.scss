@@ -7,7 +7,7 @@
   flex-direction: column;
   height: 100%;
   position: relative;
-  background-color: $secondary-color;
+  background-color: var(--secondary-color);
   overflow: hidden;
   
   // Efektas su gradientu ir burbulais
@@ -18,7 +18,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(120deg, rgba($primary-light, 0.03) 0%, rgba($blue-accent, 0.05) 100%);
+    background: linear-gradient(120deg, rgba(var(--primary-light), 0.03) 0%, rgba(var(--blue-accent), 0.05) 100%);
     z-index: 0;
     pointer-events: none;
   }
@@ -32,7 +32,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba($primary-light, 0.05) 0%, rgba($primary-light, 0) 70%);
+    background: radial-gradient(circle, rgba(var(--primary-light), 0.05) 0%, rgba(var(--primary-light), 0) 70%);
     @include animate(float, 10s, 0s, infinite, alternate);
     pointer-events: none;
     z-index: 0;
@@ -57,7 +57,7 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba($primary-color, 0.03) 0%, rgba($primary-color, 0) 70%);
+      background: radial-gradient(circle, rgba(var(--primary-color), 0.03) 0%, rgba(var(--primary-color), 0) 70%);
       @include animate(float, 13s, 1s, infinite, alternate-reverse);
       z-index: -1;
       pointer-events: none;
@@ -71,7 +71,7 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba($blue-accent, 0.04) 0%, rgba($blue-accent, 0) 70%);
+      background: radial-gradient(circle, rgba(var(--blue-accent), 0.04) 0%, rgba(var(--blue-accent), 0) 70%);
       @include animate(float, 8s, 2s, infinite);
       z-index: -1;
       pointer-events: none;
@@ -83,8 +83,8 @@
     justify-content: center;
     align-items: center;
     background: 
-      radial-gradient(circle at 80% 20%, rgba($primary-light, 0.07), transparent 300px),
-      radial-gradient(circle at 20% 80%, rgba($blue-accent, 0.05), transparent 300px);
+      radial-gradient(circle at 80% 20%, rgba(var(--primary-light), 0.07), transparent 300px),
+      radial-gradient(circle at 20% 80%, rgba(var(--blue-accent), 0.05), transparent 300px);
     
     .chat-window__placeholder {
       text-align: center;
@@ -92,7 +92,7 @@
       max-width: 400px;
       
       h2 {
-        color: $light-text-color;
+        color: var(--light-text-color);
         font-weight: 500;
         position: relative;
         display: inline-block;
@@ -106,7 +106,7 @@
           transform: translateX(-50%);
           width: 50px;
           height: 3px;
-          background: linear-gradient(to right, $primary-light, $blue-accent);
+          background: linear-gradient(to right, var(--primary-light), var(--blue-accent));
           border-radius: 3px;
         }
       }
@@ -118,7 +118,7 @@
         left: 35%;
         top: 45%;
         font-size: 24px;
-        color: rgba($primary-color, 0.3);
+        color: rgba(var(--primary-color), 0.3);
         @include animate(slideInLeft, 0.8s, 0.5s);
         @include animate(float, 3s, 0s, infinite, alternate);
       }
