@@ -1,0 +1,77 @@
+@import './styles/variables';
+@import './styles/mixins';
+@import './styles/animations';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $primary-font;
+  color: $text-color;
+  background-color: $gray-100;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+// Pridėkime stilizuotą scrollbar'ą visai aplikacijai
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba($primary-color, 0.2);
+  border-radius: 3px;
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.4);
+  }
+}
+
+// Stilizuotas teksto pažymėjimas
+::selection {
+  background-color: rgba($primary-light, 0.3);
+  color: $primary-dark;
+}
+
+// Stilizuotas page load transition
+body {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+// Papildomos stiliaus taisyklės
+button, input, textarea {
+  font-family: $primary-font;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color 0.2s;
+  
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+// Gražus šrifto rendering
+body {
+  text-rendering: optimizeLegibility;
+}
+
+// Adaptyvumas įrenginiams
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}

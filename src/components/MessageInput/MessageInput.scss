@@ -1,0 +1,241 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.message-input {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  background-color: white;
+  border-top: 1px solid $border-color;
+  position: relative;
+  z-index: 10;
+  @include shadow(2);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba($primary-light, 0.3), transparent);
+  }
+  
+  // Stilizuotas fonas su gradientu
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba($gray-100, 0.8), white);
+    z-index: -1;
+  }
+  
+  &__actions {
+    display: flex;
+    margin-right: $spacing-md;
+  }
+  
+  &__action-btn {
+    @include button-reset;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $gray-100;
+    color: $light-text-color;
+    font-size: 16px;
+    margin-right: $spacing-xs;
+    @include transition(background-color, color, transform, box-shadow);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba($primary-color, 0.08);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      @include transition(width, height);
+    }
+    
+    &:hover {
+      background-color: rgba($primary-light, 0.1);
+      color: $primary-color;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba($primary-color, 0.15);
+      
+      &::before {
+        width: 100%;
+        height: 100%;
+        @include animate(fadeIn, 0.3s);
+      }
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba($primary-color, 0.1);
+    }
+    
+    .icon {
+      position: relative;
+      z-index: 1;
+    }
+  }
+  
+  &__field {
+    flex: 1;
+    height: 44px;
+    background-color: $gray-100;
+    border: none;
+    border-radius: 22px;
+    padding: 0 $spacing-lg;
+    font-size: $font-size-medium;
+    color: $text-color;
+    @include transition(background-color, box-shadow, transform);
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    
+    &::placeholder {
+      color: $light-text-color;
+      transition: opacity 0.3s;
+    }
+    
+    &:focus {
+      background-color: white;
+      box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.02),
+        0 0 0 2px rgba($primary-light, 0.2);
+      transform: translateY(-1px);
+      
+      &::placeholder {
+        opacity: 0.6;
+      }
+    }
+    
+    &:hover:not(:focus) {
+      background-color: darken($gray-100, 2%);
+    }
+  }
+  
+  &__send {
+    @include button-reset;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: $spacing-md;
+    background: linear-gradient(135deg, $primary-color, $primary-light);
+    background-size: 200% 200%;
+    color: white;
+    font-size: 16px;
+    @include transition(transform, box-shadow, opacity);
+    @include animate(colorPulse, 3s, 0s, infinite, alternate);
+    position: relative;
+    overflow: hidden;
+    
+    // Stilizuotas pulsavimo efektas
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(white, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      @include transition(width, height);
+    }
+    
+    &:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba($primary-color, 0.3);
+      
+      &::before {
+        width: 100%;
+        height: 100%;
+        @include animate(fadeIn, 0.3s);
+      }
+      
+      .icon {
+        @include animate(pulse, 1s, 0s, infinite);
+      }
+    }
+    
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+      box-shadow: 0 2px 5px rgba($primary-color, 0.2);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      background: $gray-300;
+      @include animate(none);
+    }
+    
+    .icon {
+      position: relative;
+      z-index: 1;
+      transform: rotate(45deg);
+      margin-left: 2px;
+    }
+  }
+  
+  // Stilizuotas "rašymo" animacijos efektas
+  &:focus-within {
+    &::before {
+      @include animate(shine, 2s, 0s, 1);
+    }
+  }
+}
+
+// Rašymo statusas - gali būti naudojamas parodymui, kad kitas asmuo rašo
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  margin: $spacing-xs 0;
+  
+  &__bubbles {
+    display: flex;
+    align-items: center;
+  }
+  
+  &__bubble {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba($primary-color, 0.6);
+    margin-right: 4px;
+    
+    &:nth-child(1) {
+      @include animate(typing, 1s, 0s, infinite);
+    }
+    
+    &:nth-child(2) {
+      @include animate(typing, 1s, 0.2s, infinite);
+    }
+    
+    &:nth-child(3) {
+      @include animate(typing, 1s, 0.4s, infinite);
+      margin-right: 0;
+    }
+  }
+  
+  &__text {
+    font-size: $font-size-small;
+    color: $light-text-color;
+    margin-left: $spacing-xs;
+  }
+}

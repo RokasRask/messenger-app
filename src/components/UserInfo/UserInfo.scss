@@ -1,0 +1,186 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/animations';
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  background-color: white;
+  border-bottom: 1px solid $border-color;
+  position: relative;
+  z-index: 10;
+  @include shadow(1);
+  
+  // Stilizuotas fonas su gradientu
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(120deg, rgba($primary-light, 0.02) 0%, rgba($blue-accent, 0.05) 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  // Animuotas dekoratyvinis elementas
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, $primary-light, transparent);
+    opacity: 0.7;
+    transform: scaleX(0.3);
+    transform-origin: center;
+    @include transition(transform);
+  }
+  
+  &:hover::after {
+    transform: scaleX(1);
+    @include animate(shine, 2s, 0s, 1);
+  }
+  
+  &__avatar {
+    position: relative;
+    margin-right: $spacing-lg;
+    
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 10px rgba(#000, 0.1);
+      border: 2px solid white;
+      @include transition(transform, box-shadow);
+      
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba($primary-color, 0.2);
+      }
+    }
+    
+    .status-indicator {
+      @include status-dot(10px);
+      bottom: 2px;
+      right: 2px;
+      z-index: 2;
+      border: 2px solid white;
+      box-shadow: 0 0 0 1px rgba(#000, 0.05);
+      
+      &.online {
+        @include animate(pulse, 3s, 0s, infinite);
+      }
+      
+      &.away {
+        @include animate(pulse, 4s, 0s, infinite);
+      }
+    }
+  }
+  
+  &__details {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  &__name {
+    margin: 0;
+    color: $text-color;
+    font-size: $font-size-medium;
+    font-weight: 600;
+    @include text-truncate;
+    position: relative;
+    @include transition(color);
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  
+  &__status {
+    margin: 0;
+    font-size: $font-size-small;
+    color: $light-text-color;
+    @include text-truncate;
+    display: inline-block;
+    position: relative;
+    padding-left: 5px;
+    
+    &::before {
+      content: '•';
+      position: absolute;
+      left: -5px;
+      color: $light-text-color;
+    }
+  }
+  
+  &__actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  &__action-btn {
+    @include button-reset;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: $spacing-sm;
+    background-color: $gray-100;
+    color: $light-text-color;
+    font-size: 16px;
+    @include transition(background-color, color, transform, box-shadow);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba($primary-color, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      @include transition(width, height);
+    }
+    
+    &:hover {
+      background-color: rgba($primary-light, 0.1);
+      color: $primary-color;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba($primary-color, 0.2);
+      
+      &::before {
+        width: 100%;
+        height: 100%;
+        @include animate(fadeIn, 0.3s);
+      }
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba($primary-color, 0.1);
+    }
+    
+    .icon {
+      position: relative;
+      z-index: 1;
+    }
+    
+    // Pulse animation for call button
+    &:first-child:hover {
+      .icon {
+        @include animate(pulse, 1.5s, 0s, infinite);
+      }
+    }
+  }
+}
