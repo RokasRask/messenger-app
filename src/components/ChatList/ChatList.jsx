@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ChatContext } from '../../context/ChatContext';
 import { formatChatListDate } from '../../utils/dateFormat';
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import './ChatList.scss';
 
 const ChatList = () => {
@@ -15,6 +16,7 @@ const ChatList = () => {
     <div className="chat-list">
       <div className="chat-list__header">
         <h1>Pokalbiai</h1>
+        <ThemeToggler />
       </div>
       <div className="chat-list__search">
         <input type="text" placeholder="Ieškoti..." />

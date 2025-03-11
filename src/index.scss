@@ -1,3 +1,5 @@
+// Importuojame temų kintamuosius ir kitus stiliaus failus
+@import './styles/theme-variables';
 @import './styles/variables';
 @import './styles/mixins';
 @import './styles/animations';
@@ -73,5 +75,57 @@ body {
 @media (max-width: 768px) {
   html {
     font-size: 14px;
+  }
+}
+
+// Tema: Dark - specialūs pataisymai
+[data-theme='dark'] {
+  body {
+    background-color: #121212;
+  }
+  
+  // Inversinis šviesos režimas
+  .chat-list::before,
+  .chat-window::before,
+  .chat-window__messages::before,
+  .chat-window__messages::after {
+    opacity: 0.05; // Sumažiname foninių elementų ryškumą tamsioje temoje
+  }
+  
+  // Sutamsintos formos
+  input, 
+  textarea, 
+  .message-input__field {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: $text-color !important;
+    
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+  }
+  
+  // Tamsios temos žinutės
+  .message:not(.message--own) .message__content {
+    background-color: rgba(255, 255, 255, 0.1);
+    
+    &::before {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  // Patamsinti sąrašo elementai
+  .chat-list__item {
+    background: rgba(255, 255, 255, 0.05);
+    
+    &.active,
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  // Patamsintas viršutinis meniu
+  .user-info {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
   }
 }

@@ -1,27 +1,28 @@
+import placeholder from '../assets/images/avatar-placeholder.png'
 // Vartotojų duomenys
 export const users = [
     {
       id: 'user-1',
       name: 'Jonas Jonaitis',
-      avatar: '/assets/images/avatar-placeholder.png',
+      avatar: placeholder,
       status: 'online'
     },
     {
       id: 'user-2',
       name: 'Petras Petraitis',
-      avatar: '/assets/images/avatar-placeholder.png',
+      avatar: placeholder,
       status: 'online'
     },
     {
       id: 'user-3',
       name: 'Ona Onaitė',
-      avatar: '/assets/images/avatar-placeholder.png',
+      avatar: placeholder,
       status: 'offline'
     },
     {
       id: 'user-4',
       name: 'Marija Marijaitė',
-      avatar: '/assets/images/avatar-placeholder.png',
+      avatar: placeholder,
       status: 'away'
     }
   ];
