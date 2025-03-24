@@ -10,7 +10,6 @@ function App() {
         <MainLayout />
       </ChatProvider>
     </ThemeProvider>
-    
   );
 }
 
